@@ -1,6 +1,6 @@
 ﻿namespace SystemFileWatcherGUI
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,12 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSystemWatcherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directoryBox = new System.Windows.Forms.TextBox();
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
@@ -49,10 +53,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.databaseWriteButton = new System.Windows.Forms.Button();
             this.eventsBox = new System.Windows.Forms.TextBox();
-            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queryDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +68,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(595, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(446, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -74,14 +78,14 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitButton_click);
             // 
@@ -91,13 +95,33 @@
             this.startToolStripMenuItem,
             this.stopToolStripMenuItem});
             this.fileSystemWatcherToolStripMenuItem.Name = "fileSystemWatcherToolStripMenuItem";
-            this.fileSystemWatcherToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
+            this.fileSystemWatcherToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
             this.fileSystemWatcherToolStripMenuItem.Text = "FileSystemWatcher";
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startButton_click);
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stopToolStripMenuItem.Text = "Stop";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopButton_click);
             // 
             // databaseToolStripMenuItem
             // 
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.writeToDatabaseToolStripMenuItem,
+            this.queryDatabaseToolStripMenuItem,
+            this.clearDatabaseToolStripMenuItem});
             this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.databaseToolStripMenuItem.Text = "Database";
             // 
             // helpToolStripMenuItem
@@ -107,22 +131,40 @@
             this.shortcutsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.aboutButton_click);
             // 
+            // shortcutsToolStripMenuItem
+            // 
+            this.shortcutsToolStripMenuItem.Name = "shortcutsToolStripMenuItem";
+            this.shortcutsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.shortcutsToolStripMenuItem.Text = "Shortcuts";
+            this.shortcutsToolStripMenuItem.Click += new System.EventHandler(this.shortcutsToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // directoryBox
             // 
-            this.directoryBox.Location = new System.Drawing.Point(260, 104);
+            this.directoryBox.Location = new System.Drawing.Point(195, 84);
+            this.directoryBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.directoryBox.Name = "directoryBox";
-            this.directoryBox.Size = new System.Drawing.Size(294, 22);
+            this.directoryBox.Size = new System.Drawing.Size(222, 20);
             this.directoryBox.TabIndex = 1;
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(260, 132);
+            this.startButton.Location = new System.Drawing.Point(195, 107);
+            this.startButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(100, 30);
+            this.startButton.Size = new System.Drawing.Size(75, 24);
             this.startButton.TabIndex = 2;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
@@ -130,9 +172,10 @@
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(454, 132);
+            this.stopButton.Location = new System.Drawing.Point(340, 107);
+            this.stopButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(100, 30);
+            this.stopButton.Size = new System.Drawing.Size(75, 24);
             this.stopButton.TabIndex = 3;
             this.stopButton.Text = "Stop";
             this.stopButton.UseVisualStyleBackColor = true;
@@ -141,27 +184,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(260, 84);
+            this.label1.Location = new System.Drawing.Point(195, 68);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 17);
+            this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Directory to monitor";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(257, 226);
+            this.label2.Location = new System.Drawing.Point(193, 184);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 17);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Database";
             this.label2.Click += new System.EventHandler(this.stopButton_click);
             // 
             // databaseClearButton
             // 
-            this.databaseClearButton.Location = new System.Drawing.Point(479, 274);
+            this.databaseClearButton.Location = new System.Drawing.Point(359, 223);
+            this.databaseClearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.databaseClearButton.Name = "databaseClearButton";
-            this.databaseClearButton.Size = new System.Drawing.Size(75, 36);
+            this.databaseClearButton.Size = new System.Drawing.Size(56, 29);
             this.databaseClearButton.TabIndex = 7;
             this.databaseClearButton.Text = "Clear";
             this.databaseClearButton.UseVisualStyleBackColor = true;
@@ -169,9 +215,10 @@
             // 
             // databaseQuereButton
             // 
-            this.databaseQuereButton.Location = new System.Drawing.Point(398, 274);
+            this.databaseQuereButton.Location = new System.Drawing.Point(298, 223);
+            this.databaseQuereButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.databaseQuereButton.Name = "databaseQuereButton";
-            this.databaseQuereButton.Size = new System.Drawing.Size(75, 36);
+            this.databaseQuereButton.Size = new System.Drawing.Size(56, 29);
             this.databaseQuereButton.TabIndex = 6;
             this.databaseQuereButton.Text = "Query";
             this.databaseQuereButton.UseVisualStyleBackColor = true;
@@ -179,9 +226,10 @@
             // 
             // databaseBox
             // 
-            this.databaseBox.Location = new System.Drawing.Point(260, 246);
+            this.databaseBox.Location = new System.Drawing.Point(195, 200);
+            this.databaseBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.databaseBox.Name = "databaseBox";
-            this.databaseBox.Size = new System.Drawing.Size(294, 22);
+            this.databaseBox.Size = new System.Drawing.Size(222, 20);
             this.databaseBox.TabIndex = 5;
             // 
             // extensionMonitor
@@ -191,10 +239,12 @@
             ".txt",
             ".doc",
             ".wmv",
-            ".ini"});
-            this.extensionMonitor.Location = new System.Drawing.Point(42, 102);
+            ".ini",
+            ".tmp"});
+            this.extensionMonitor.Location = new System.Drawing.Point(32, 83);
+            this.extensionMonitor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.extensionMonitor.Name = "extensionMonitor";
-            this.extensionMonitor.Size = new System.Drawing.Size(133, 24);
+            this.extensionMonitor.Size = new System.Drawing.Size(101, 21);
             this.extensionMonitor.TabIndex = 10;
             // 
             // databaseExtension
@@ -204,44 +254,50 @@
             ".txt",
             ".doc",
             ".wmv",
-            ".ini"});
-            this.databaseExtension.Location = new System.Drawing.Point(42, 246);
+            ".ini",
+            ".tmp"});
+            this.databaseExtension.Location = new System.Drawing.Point(32, 200);
+            this.databaseExtension.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.databaseExtension.Name = "databaseExtension";
-            this.databaseExtension.Size = new System.Drawing.Size(133, 24);
+            this.databaseExtension.Size = new System.Drawing.Size(101, 21);
             this.databaseExtension.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 82);
+            this.label3.Location = new System.Drawing.Point(29, 67);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 17);
+            this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 12;
             this.label3.Text = "Extension to monitor";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 226);
+            this.label4.Location = new System.Drawing.Point(29, 184);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 17);
+            this.label4.Size = new System.Drawing.Size(134, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "Query or write by extension";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 327);
+            this.label5.Location = new System.Drawing.Point(29, 266);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 17);
+            this.label5.Size = new System.Drawing.Size(140, 13);
             this.label5.TabIndex = 15;
             this.label5.Text = "File System Watcher Events";
             // 
             // databaseWriteButton
             // 
-            this.databaseWriteButton.Location = new System.Drawing.Point(260, 274);
+            this.databaseWriteButton.Location = new System.Drawing.Point(195, 223);
+            this.databaseWriteButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.databaseWriteButton.Name = "databaseWriteButton";
-            this.databaseWriteButton.Size = new System.Drawing.Size(132, 36);
+            this.databaseWriteButton.Size = new System.Drawing.Size(99, 29);
             this.databaseWriteButton.TabIndex = 16;
             this.databaseWriteButton.Text = "Write to database";
             this.databaseWriteButton.UseVisualStyleBackColor = true;
@@ -250,49 +306,42 @@
             // eventsBox
             // 
             this.eventsBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.eventsBox.Location = new System.Drawing.Point(42, 347);
+            this.eventsBox.Location = new System.Drawing.Point(32, 282);
+            this.eventsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.eventsBox.Multiline = true;
             this.eventsBox.Name = "eventsBox";
-            this.eventsBox.Size = new System.Drawing.Size(512, 222);
+            this.eventsBox.Size = new System.Drawing.Size(385, 181);
             this.eventsBox.TabIndex = 17;
             // 
-            // startToolStripMenuItem
+            // writeToDatabaseToolStripMenuItem
             // 
-            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.startToolStripMenuItem.Text = "Start";
-            this.startToolStripMenuItem.Click += new System.EventHandler(this.startButton_click);
+            this.writeToDatabaseToolStripMenuItem.Name = "writeToDatabaseToolStripMenuItem";
+            this.writeToDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.writeToDatabaseToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.writeToDatabaseToolStripMenuItem.Text = "Write to database";
+            this.writeToDatabaseToolStripMenuItem.Click += new System.EventHandler(this.writeToDatabaseButton_click);
             // 
-            // stopToolStripMenuItem
+            // queryDatabaseToolStripMenuItem
             // 
-            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.stopToolStripMenuItem.Text = "Stop";
-            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopButton_click);
+            this.queryDatabaseToolStripMenuItem.Name = "queryDatabaseToolStripMenuItem";
+            this.queryDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.queryDatabaseToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.queryDatabaseToolStripMenuItem.Text = "Query database";
+            this.queryDatabaseToolStripMenuItem.Click += new System.EventHandler(this.queryDatabaseButton_click);
             // 
-            // shortcutsToolStripMenuItem
+            // clearDatabaseToolStripMenuItem
             // 
-            this.shortcutsToolStripMenuItem.Name = "shortcutsToolStripMenuItem";
-            this.shortcutsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.shortcutsToolStripMenuItem.Text = "Shortcuts";
-            this.shortcutsToolStripMenuItem.Click += new System.EventHandler(this.shortcutsToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.clearDatabaseToolStripMenuItem.Name = "clearDatabaseToolStripMenuItem";
+            this.clearDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.clearDatabaseToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.clearDatabaseToolStripMenuItem.Text = "Clear database";
+            this.clearDatabaseToolStripMenuItem.Click += new System.EventHandler(this.clearDatabaseButton_click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 593);
+            this.ClientSize = new System.Drawing.Size(446, 482);
             this.Controls.Add(this.eventsBox);
             this.Controls.Add(this.databaseWriteButton);
             this.Controls.Add(this.label5);
@@ -310,6 +359,7 @@
             this.Controls.Add(this.directoryBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "File System Watcher";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -347,6 +397,9 @@
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shortcutsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeToDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem queryDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearDatabaseToolStripMenuItem;
 
     }
 }

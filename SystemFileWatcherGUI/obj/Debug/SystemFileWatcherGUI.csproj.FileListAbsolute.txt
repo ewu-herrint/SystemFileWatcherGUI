@@ -15,3 +15,21 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\SystemFileWatcherGUI\System
 C:\Users\Tyler\documents\visual studio 2013\Projects\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.csproj.GenerateResource.Cache
 C:\Users\Tyler\documents\visual studio 2013\Projects\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.exe
 C:\Users\Tyler\documents\visual studio 2013\Projects\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.pdb
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\SystemFileWatcherGUI.exe.config
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.exe
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.pdb
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\SystemFileWatcherGUI.exe
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\SystemFileWatcherGUI.pdb
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\EntityFramework.dll
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\System.Data.SQLite.dll
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\EntityFramework.xml
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\bin\Debug\System.Data.SQLite.xml
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.Properties.Resources.resources
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.csproj.GenerateResource.Cache
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.MainForm.resources
+C:\Users\Tyler\Source\Repos\SystemFileWatcherGUI\SystemFileWatcherGUI\obj\Debug\SystemFileWatcherGUI.QueryForm.resources

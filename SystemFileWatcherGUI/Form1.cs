@@ -12,15 +12,14 @@ using System.Data.SQLite;
 
 namespace SystemFileWatcherGUI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private FileSystemWatcher watcher;
-        private LinkedList<FileSystemEventArgs> files;
+        private LinkedList<MyFileSystemEventArgWrapper> files;
         private SQLiteConnection sqlite_conn;
         private SQLiteCommand sqlite_cmd;
-        private SQLiteDataReader sqlite_datareader;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -29,7 +28,28 @@ namespace SystemFileWatcherGUI
         {
             stopButton.Enabled = false;
             stopToolStripMenuItem.Enabled = false;
-            files = new LinkedList<FileSystemEventArgs>();
+            files = new LinkedList<MyFileSystemEventArgWrapper>();
+        }
+
+        public class MyFileSystemEventArgWrapper
+        {
+            private String name;
+            private String path;
+            private String eventType;
+            private String datetime;
+
+            public String Name { get { return this.name; } }
+            public String Path { get { return this.path; } }
+            public String EventType { get { return this.eventType; } }
+            public String Datetime { get { return this.datetime; } }
+
+            public MyFileSystemEventArgWrapper(String name, String path, String eventType)
+            {
+                this.name = name;
+                this.path = path;
+                this.eventType = eventType;
+                this.datetime = DateTime.Now.ToString();
+            }
         }
 
         private void startButton_click(object sender, EventArgs e)
@@ -90,22 +110,25 @@ namespace SystemFileWatcherGUI
 
         private void OnChanged(object source, FileSystemEventArgs eventArg)
         {
-            string eventToLog = "NAME: " + eventArg.Name + ", PATH: " + eventArg.FullPath + 
+            string name = eventArg.Name.Substring(eventArg.Name.LastIndexOf("\\") + 1);
+            string eventToLog = "NAME: " + name + ", PATH: " + eventArg.FullPath + 
                 ", EVENT: " + eventArg.ChangeType + ", TIME: " + DateTime.Now.ToString() + Environment.NewLine;
             writeToScreen(eventToLog);
 
             // Maintain list of events to write to database.
-            files.AddLast(eventArg);
+            files.AddLast(new MyFileSystemEventArgWrapper(name, eventArg.FullPath, eventArg.ChangeType.ToString()));
         }
 
         private void OnRenamed(object source, RenamedEventArgs eventArg)
         {
-            string eventToLog = "OLD NAME: " + eventArg.OldName + " NEW NAME: " + eventArg.Name + 
+            string oldName = eventArg.OldName.Substring(eventArg.Name.LastIndexOf("\\"));
+            string name = eventArg.Name.Substring(eventArg.Name.LastIndexOf("\\"));
+            string eventToLog = "OLD NAME: " + oldName + " NEW NAME: " + name + 
                 ", PATH: " + eventArg.FullPath + ", EVENT: " + eventArg.ChangeType + ", TIME: " + DateTime.Now.ToString() + Environment.NewLine;
             writeToScreen(eventToLog);
 
             // Maintain list of events to write to database.
-            files.AddLast(eventArg);
+            files.AddLast(new MyFileSystemEventArgWrapper(name, eventArg.FullPath, eventArg.ChangeType.ToString()));
         }
 
         private void stopButton_click(object sender, EventArgs e)
@@ -122,11 +145,42 @@ namespace SystemFileWatcherGUI
 
         private void clearDatabaseButton_click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure you wish to clear the database?", "Clear Database", MessageBoxButtons.YesNo);
 
+            if (result == DialogResult.Yes)
+            {
+                String databasePath = Path.Combine(Environment.CurrentDirectory, databaseBox.Text);
+                // If given database file exists
+                if (File.Exists(databasePath))
+                {
+                    File.Delete(databasePath);
+                    makeNewDatabase();
+                }
+                else
+                {
+                    MessageBox.Show("That database file doesn't exist.");
+                } 
+            }
         }
 
         private void queryDatabaseButton_click(object sender, EventArgs e)
         {
+            if (databaseBox.Text != "")
+            {
+                String databasePath = Path.Combine(Environment.CurrentDirectory, databaseBox.Text);
+                // If given database file exists
+                if (File.Exists(databasePath))
+                {
+                    QueryForm form = new QueryForm(sqlite_conn, databaseExtension.Text);
+                    form.Show();
+                }
+                else // database file doesn't exist
+                {
+                    MessageBox.Show("That database file does not exist.");
+                }
+            }
+            else
+                MessageBox.Show("Enter a database file to query.");
 
         }
 
@@ -134,15 +188,63 @@ namespace SystemFileWatcherGUI
         {
             if(databaseBox.Text != "")
             {
-                String text = "Data Source=" + databaseBox.Text + ";Version=3;New=True;Compress=True;";
-                sqlite_conn = new SQLiteConnection(text);
-                sqlite_conn.Open();
+                String databasePath = Path.Combine(Environment.CurrentDirectory, databaseBox.Text);
+                // If given database file exists
+                if(File.Exists(databasePath))
+                {
+                    openDatabase();
+                }
+                else // database file doesn't exist
+                {
+                    makeNewDatabase();
+                }
+                // Write to database
+                writeToDatabase();
             }
             else
             {
                 MessageBox.Show("Enter a database filename.");
             }
             
+        }
+
+        private void writeToDatabase()
+        {
+            foreach(MyFileSystemEventArgWrapper arg in files)
+            {
+                String name = arg.Name, path = arg.Path, eventType = arg.EventType, dateTime = arg.Datetime;
+                String filter = databaseExtension.Text;
+                String fileExtension = name.Substring(name.Length - filter.Length);
+
+                if(fileExtension == filter)
+                {
+                    // Craft command
+                    String command = "INSERT INTO WatchedFiles (name, path, eventType, timedate) VALUES ('" + name + "', '" + path + "', '" + eventType + "', '" + dateTime + "');";
+                    sqlite_cmd.CommandText = command;
+                    sqlite_cmd.ExecuteNonQuery(); 
+                }  
+            }
+            files.Clear();
+        }
+
+        private void openDatabase() // Needs fixed apparently
+        {
+            String text = "Data Source=" + databaseBox.Text + ";Version=3;New=False;Compress=True;";
+            // Create database connection
+            sqlite_conn = new SQLiteConnection(text);
+            // Open database connection
+            sqlite_conn.Open();
+        }
+
+        private void makeNewDatabase()
+        {
+            openDatabase();
+            // Instantiate sql command
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            // Set command to create a table of watched files
+            sqlite_cmd.CommandText = "CREATE TABLE WatchedFiles (name varchar(100), path varchar(300), eventType varchar(100), timedate varchar(50));";
+            // Execute
+            sqlite_cmd.ExecuteNonQuery();
         }
 
         private bool isPath(String path)
@@ -167,6 +269,10 @@ namespace SystemFileWatcherGUI
 
         private void exitButton_click(object sender, EventArgs e)
         {
+            // Attempt to close connection if it was opened.
+            try { sqlite_conn.Close(); }
+            catch { }
+
             Environment.Exit(0);
         }
 
